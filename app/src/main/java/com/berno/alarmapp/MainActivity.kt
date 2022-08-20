@@ -11,7 +11,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_main)
-            button = findViewById<Button>(R.id.button)
+            button = findViewById<Button>(R.id.add_alarm_btn)
             button.setOnClickListener(object : View.OnClickListener{
                 override fun onClick(p0: View?) {
                     val dialog = NumberPickerDialog()
