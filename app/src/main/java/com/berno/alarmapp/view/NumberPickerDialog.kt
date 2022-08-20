@@ -1,10 +1,11 @@
-package com.berno.alarmapp
+package com.berno.alarmapp.view
 
 import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.NumberPicker
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
@@ -23,7 +24,13 @@ class NumberPickerDialog : DialogFragment() {
   val view = binding?.root
   var hourPicker : NumberPicker? = binding?.hourPicker
   var minutePicker : NumberPicker? = binding?.minutePicker
-  var amPmPicker : NumberPicker? = binding?.hourPicker
+  var amPmPicker : NumberPicker? = binding?.amPmPicker
+  var addBtn : Button? = binding?.confirmButton
+  addBtn?.setOnClickListener(object : View.OnClickListener{
+   override fun onClick(p0: View?) {
+    dismiss()
+   }
+  })
   hourPicker?.minValue = 0
   hourPicker?.maxValue = 12
   minutePicker?.maxValue = 59

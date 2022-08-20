@@ -1,9 +1,10 @@
-package com.berno.alarmapp
+package com.berno.alarmapp.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import com.berno.alarmapp.R
 
 class MainActivity : AppCompatActivity() {
         lateinit var button : Button
