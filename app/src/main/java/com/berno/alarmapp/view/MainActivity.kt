@@ -4,11 +4,15 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.berno.alarmapp.AlaramListAdaptor
 import com.berno.alarmapp.R
 import com.berno.alarmapp.db.DBUtil
 
 class MainActivity : AppCompatActivity() {
         lateinit var button : Button
+        var adaptor = AlaramListAdaptor(this)
         override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -21,6 +25,16 @@ class MainActivity : AppCompatActivity() {
                     dialog.show(supportFragmentManager, "customdialog")
                 }
             })
+            init()
 
+    }
+
+    fun init(){
+        var recyclerView : RecyclerView = findViewById(R.id.alarm_list_view)
+        var linearLayoutManager = LinearLayoutManager(this)
+        recyclerView.layoutManager = linearLayoutManager
+        recyclerView.adapter = adaptor
+        adaptor.items = DBUtil.readAllData()
+        adaptor.notifyDataSetChanged()
     }
 }

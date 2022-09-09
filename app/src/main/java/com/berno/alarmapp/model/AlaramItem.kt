@@ -1,13 +1,11 @@
 package com.berno.alarmapp.model
 
-class AlaramItem {
-    private var _title:String? = null
-    private val title get() = _title
-    private var _alarmDate:String? = null
+import com.berno.alarmapp.R
 
-    constructor(title:String, alaramDate:String){
-        _title=title
-        _alarmDate = alaramDate
-    }
+class AlaramItem(description : String, alarmDate : String) {
+     var description: String = description
+     var alarmDate: String = alarmDate
+     var alarmResId: Int = R.id.clock_img
+     var deleteResId: Int =R.id.delete_button
 
 }

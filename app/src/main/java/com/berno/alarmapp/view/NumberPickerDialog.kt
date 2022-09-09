@@ -41,7 +41,7 @@ class NumberPickerDialog(var activity: Activity) : DialogFragment() {
     if(amPmPicker?.value.toString().equals(AM_VALUE.toString())) amPm = AM_STRING else amPm = PM_STRING
     var hour = hourPicker?.value.toString()
     var minute = minutePicker?.value.toString()
-    var time = amPm + DBUtil.TIME_SEPERATOR + hour + DBUtil.TIME_SEPERATOR + minute + DBUtil.TIME_SEPERATOR
+    var time = "$amPm/$hour:$minute"
     DBUtil.insertData(activity, descriptionText?.text.toString(), time)
     dismiss()
 

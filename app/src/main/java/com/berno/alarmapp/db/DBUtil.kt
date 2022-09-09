@@ -1,10 +1,12 @@
 package com.berno.alarmapp.db
 
+import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.util.Log
 import android.widget.Toast
+import com.berno.alarmapp.model.AlaramItem
 
 object DBUtil {
 
@@ -44,6 +46,26 @@ object DBUtil {
             Toast.makeText(context, "지울 대상이 없습니다.", Toast.LENGTH_SHORT).show();
             Log.d(DB_LOGCAT_TAG, "지울 대상이 없습니다.\nclause :: " + "ID=? and time=?" + "\nvalue :: " + id.toString() + ", " + time)
         }
+    }
+
+    @SuppressLint("Range")
+    fun readAllData() : ArrayList<AlaramItem>{
+        var tableDatasCursor = db.rawQuery("SELECT * FROM $TABLE_NAME", null)
+
+        var datas = ArrayList<AlaramItem>()
+        var time : String
+        var description : String
+        var id : Int
+        if(tableDatasCursor!!.moveToFirst()){
+            while(!tableDatasCursor.isAfterLast){
+                time = tableDatasCursor.getString(tableDatasCursor.getColumnIndex("time"))
+                description = tableDatasCursor.getString(tableDatasCursor.getColumnIndex("description"))
+                datas.add(AlaramItem(description, time))
+                tableDatasCursor.moveToNext()
+            }
+        }
+        return datas
+
     }
 
 }

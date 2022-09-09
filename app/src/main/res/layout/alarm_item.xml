@@ -10,7 +10,7 @@
     >
 
     <ImageView
-        android:id="@+id/img_rv_photo"
+        android:id="@+id/clock_img"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:src="@drawable/alarm_clock"
@@ -20,7 +20,7 @@
         app:layout_constraintBottom_toBottomOf="parent"/>
 
     <TextView
-        android:id="@+id/tv_rv_name"
+        android:id="@+id/alarm_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="알람 제목"
@@ -28,18 +28,28 @@
         android:layout_marginLeft="20dp"
         android:textSize="24sp"
         android:textColor="@color/white"
-        app:layout_constraintLeft_toRightOf="@id/img_rv_photo"
+        app:layout_constraintLeft_toRightOf="@id/clock_img"
         app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
-        android:id="@+id/tv_rv_age"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="알람 시간"
-        android:layout_marginTop="10dp"
+        android:id="@+id/alarm_time"
+        android:layout_width="77dp"
+        android:layout_height="31dp"
         android:layout_marginLeft="20dp"
-        android:textSize="18sp"
+        android:layout_marginTop="10dp"
+        android:text="알람 시간"
         android:textColor="@color/white"
-        app:layout_constraintLeft_toRightOf="@id/img_rv_photo"
-        app:layout_constraintTop_toBottomOf="@id/tv_rv_name"/>
+        android:textSize="15sp"
+        app:layout_constraintLeft_toRightOf="@id/clock_img"
+        app:layout_constraintTop_toBottomOf="@id/alarm_title" />
+
+    <ImageButton
+        android:id="@+id/delete_button"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/delete"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
