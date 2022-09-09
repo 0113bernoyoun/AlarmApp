@@ -11,18 +11,22 @@ import android.widget.EditText
 import android.widget.NumberPicker
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.berno.alarmapp.R
 import com.berno.alarmapp.databinding.ActivityAddAlarmBinding
 import com.berno.alarmapp.db.DBUtil
 import com.google.android.material.textfield.TextInputEditText
 
-class NumberPickerDialog(var activity: Activity) : DialogFragment() {
+class NumberPickerDialog(var activity: Activity, recyclerView: RecyclerView) : DialogFragment() {
  private var _binding: ActivityAddAlarmBinding? = null
  private val binding get() = _binding
-
+ private var recyclerView = recyclerView
  private val AM_VALUE : Int = 0
  private val PM_VALUE : Int = 1
  private val AM_STRING : String = "AM"
  private val PM_STRING : String = "PM"
+ var dataAdded : Boolean = false
  override fun onCreateView(
   inflater: LayoutInflater,
   container: ViewGroup?,
@@ -42,7 +46,10 @@ class NumberPickerDialog(var activity: Activity) : DialogFragment() {
     var hour = hourPicker?.value.toString()
     var minute = minutePicker?.value.toString()
     var time = "$amPm/$hour:$minute"
-    DBUtil.insertData(activity, descriptionText?.text.toString(), time)
+    if(DBUtil.insertData(activity, descriptionText?.text.toString(), time)){
+     dataAdded = true
+     recyclerView.adapter?.notifyDataSetChanged()
+    }
     dismiss()
 
    }

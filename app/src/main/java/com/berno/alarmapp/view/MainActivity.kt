@@ -18,10 +18,13 @@ class MainActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_main)
             DBUtil.createDB(this, DBUtil.DB_FILE_NAME)
+
             button = findViewById<Button>(R.id.add_alarm_btn)
             button.setOnClickListener(object : View.OnClickListener{
                 override fun onClick(p0: View?) {
-                    val dialog = NumberPickerDialog(this@MainActivity)
+                    var recyclerView : RecyclerView = findViewById(R.id.alarm_list_view)
+                    recyclerView.adapter = adaptor
+                    val dialog = NumberPickerDialog(this@MainActivity, recyclerView)
                     dialog.show(supportFragmentManager, "customdialog")
                 }
             })
@@ -29,12 +32,20 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun init(){
+    private fun init(){
         var recyclerView : RecyclerView = findViewById(R.id.alarm_list_view)
         var linearLayoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = linearLayoutManager
         recyclerView.adapter = adaptor
         adaptor.items = DBUtil.readAllData()
         adaptor.notifyDataSetChanged()
+
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        var recyclerView : RecyclerView = findViewById(R.id.alarm_list_view)
+        var linearLayoutManager = LinearLayoutManager(this)
+        recyclerView.refreshDrawableState()
     }
 }

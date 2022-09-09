@@ -27,15 +27,17 @@ object DBUtil {
         helper.onCreate(db)
     }
 
-    fun insertData(context : Context, description : String, time : String){
+    fun insertData(context : Context, description : String, time : String) : Boolean{
         var values : ContentValues = ContentValues()
         values.put(TIME_COLUMN, time)
         values.put(DESCRIPTION_COLUMN, description)
         var result : Long = db.insert(TABLE_NAME, null, values)
         if(result == DB_INSERT_ERROR_CODE){
             Toast.makeText(context, "알람 추가 실패", Toast.LENGTH_SHORT).show();
+            return false
         } else {
             Toast.makeText(context, "알람 추가", Toast.LENGTH_SHORT).show();
+            return true
         }
     }
 
@@ -46,6 +48,10 @@ object DBUtil {
             Toast.makeText(context, "지울 대상이 없습니다.", Toast.LENGTH_SHORT).show();
             Log.d(DB_LOGCAT_TAG, "지울 대상이 없습니다.\nclause :: " + "ID=? and time=?" + "\nvalue :: " + id.toString() + ", " + time)
         }
+    }
+
+    fun deleteAllData(){
+        db.delete(TABLE_NAME, null, null)
     }
 
     @SuppressLint("Range")
