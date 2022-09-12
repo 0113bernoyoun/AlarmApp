@@ -49,7 +49,6 @@ class MainActivity : AppCompatActivity() {
         recyclerView.adapter = adaptor
         adaptor.items = DBUtil.readAllData()
         adaptor.notifyDataSetChanged()
-
     }
 
     override fun onRestart() {

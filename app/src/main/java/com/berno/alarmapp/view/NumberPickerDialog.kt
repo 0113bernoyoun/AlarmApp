@@ -13,6 +13,7 @@ import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.berno.alarmapp.AlaramListAdaptor
 import com.berno.alarmapp.R
 import com.berno.alarmapp.databinding.ActivityAddAlarmBinding
 import com.berno.alarmapp.db.DBUtil
@@ -67,6 +68,11 @@ class NumberPickerDialog(var activity: Activity, recyclerView: RecyclerView) : D
 
  override fun onDestroyView() {
   super.onDestroyView()
+  var adaptor = AlaramListAdaptor(activity)
+  recyclerView.adapter = adaptor
+  adaptor.items = DBUtil.readAllData()
+  recyclerView.adapter?.notifyDataSetChanged()
   _binding = null
  }
+
 }
