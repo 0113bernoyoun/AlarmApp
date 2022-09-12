@@ -12,6 +12,7 @@ import com.berno.alarmapp.db.DBUtil
 
 class MainActivity : AppCompatActivity() {
         lateinit var button : Button
+        lateinit var deleteAllButton : Button
         var adaptor = AlaramListAdaptor(this)
         override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,6 +21,7 @@ class MainActivity : AppCompatActivity() {
             DBUtil.createDB(this, DBUtil.DB_FILE_NAME)
 
             button = findViewById<Button>(R.id.add_alarm_btn)
+            deleteAllButton = findViewById<Button>(R.id.delete_all_btn)
             button.setOnClickListener(object : View.OnClickListener{
                 override fun onClick(p0: View?) {
                     var recyclerView : RecyclerView = findViewById(R.id.alarm_list_view)
@@ -28,6 +30,14 @@ class MainActivity : AppCompatActivity() {
                     dialog.show(supportFragmentManager, "customdialog")
                 }
             })
+
+            deleteAllButton.setOnClickListener(object : View.OnClickListener{
+                override fun onClick(p0: View?) {
+                    DBUtil.deleteAllData()
+                    init()
+                }
+            })
+
             init()
 
     }

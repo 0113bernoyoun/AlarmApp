@@ -64,9 +64,10 @@ object DBUtil {
         var id : Int
         if(tableDatasCursor!!.moveToFirst()){
             while(!tableDatasCursor.isAfterLast){
+                id = tableDatasCursor.getInt(tableDatasCursor.getColumnIndex("ID"))
                 time = tableDatasCursor.getString(tableDatasCursor.getColumnIndex("time"))
                 description = tableDatasCursor.getString(tableDatasCursor.getColumnIndex("description"))
-                datas.add(AlaramItem(description, time))
+                datas.add(AlaramItem(id, description, time))
                 tableDatasCursor.moveToNext()
             }
         }

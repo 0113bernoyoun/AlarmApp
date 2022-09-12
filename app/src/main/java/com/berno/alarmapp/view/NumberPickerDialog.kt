@@ -51,7 +51,6 @@ class NumberPickerDialog(var activity: Activity, recyclerView: RecyclerView) : D
      recyclerView.adapter?.notifyDataSetChanged()
     }
     dismiss()
-
    }
   })
   hourPicker?.minValue = 0
